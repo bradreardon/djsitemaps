@@ -5,7 +5,7 @@ from unittest import skipUnless
 from django.apps import apps
 from django.conf import settings
 
-from .base import SitemapTestsBase
+from djsitemaps.tests.base import SitemapTestsBase
 
 
 class FlatpagesSitemapTests(SitemapTestsBase):

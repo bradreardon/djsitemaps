@@ -4,7 +4,7 @@ from datetime import date
 
 from django.test import override_settings
 
-from .base import SitemapTestsBase
+from djsitemaps.tests.base import SitemapTestsBase
 
 
 class HTTPSSitemapTests(SitemapTestsBase):

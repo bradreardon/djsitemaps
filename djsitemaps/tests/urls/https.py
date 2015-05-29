@@ -1,6 +1,6 @@
 from django.conf.urls import patterns
 
-from .http import SimpleSitemap
+from djsitemaps.tests.urls.http import SimpleSitemap
 
 
 class HTTPSSitemap(SimpleSitemap):

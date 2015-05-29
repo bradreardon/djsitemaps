@@ -1,9 +1,9 @@
 from __future__ import unicode_literals
 
-import os
 from datetime import date
 from unittest import skipUnless
 
+import os
 from django.apps import apps
 from django.conf import settings
 from django.contrib.sitemaps import Sitemap, GenericSitemap
@@ -14,7 +14,7 @@ from django.utils.formats import localize
 from django.utils._os import upath
 from django.utils.translation import activate, deactivate
 
-from .base import TestModel, SitemapTestsBase
+from djsitemaps.tests.base import TestModel, SitemapTestsBase
 
 
 class HTTPSitemapTests(SitemapTestsBase):
