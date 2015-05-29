@@ -51,6 +51,9 @@ class Sitemap(object):
     # with which the sitemap was requested.
     protocol = None
 
+    def __init__(self, request):
+        self.request = request
+
     def __get(self, name, obj, default=None):
         try:
             attr = getattr(self, name)
@@ -127,7 +130,8 @@ class GenericSitemap(Sitemap):
     priority = None
     changefreq = None
 
-    def __init__(self, info_dict, priority=None, changefreq=None):
+    def __init__(self, request, info_dict, priority=None, changefreq=None):
+        self.request = request
         self.queryset = info_dict['queryset']
         self.date_field = info_dict.get('date_field', None)
         self.priority = priority
