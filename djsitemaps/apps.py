@@ -4,5 +4,5 @@ from django.utils.translation import ugettext_lazy as _
 
 
 class SiteMapsConfig(AppConfig):
-    name = 'django.contrib.sitemaps'
+    name = 'djsitemaps'
     verbose_name = _("Site Maps")

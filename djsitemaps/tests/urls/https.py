@@ -10,7 +10,7 @@ secure_sitemaps = {
     'simple': HTTPSSitemap,
 }
 
-urlpatterns = patterns('django.contrib.sitemaps.views',
+urlpatterns = patterns('djsitemaps.views',
     (r'^secure/index\.xml$', 'index', {'sitemaps': secure_sitemaps}),
     (r'^secure/sitemap-(?P<section>.+)\.xml$', 'sitemap',
         {'sitemaps': secure_sitemaps}),

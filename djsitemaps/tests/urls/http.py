@@ -1,6 +1,6 @@
 from datetime import date, datetime
 from django.conf.urls import patterns, url
-from django.contrib.sitemaps import Sitemap, GenericSitemap, FlatPageSitemap, views
+from djsitemaps import Sitemap, GenericSitemap, FlatPageSitemap, views
 from django.utils import timezone
 from django.views.decorators.cache import cache_page
 
@@ -75,7 +75,7 @@ flatpage_sitemaps = {
     'flatpages': FlatPageSitemap,
 }
 
-urlpatterns = patterns('django.contrib.sitemaps.views',
+urlpatterns = patterns('djsitemaps.views',
     (r'^simple/index\.xml$', 'index', {'sitemaps': simple_sitemaps}),
     (r'^simple/custom-index\.xml$', 'index',
         {'sitemaps': simple_sitemaps, 'template_name': 'custom_sitemap_index.xml'}),

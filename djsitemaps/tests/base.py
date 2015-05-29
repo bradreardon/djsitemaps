@@ -21,7 +21,7 @@ class SitemapTestsBase(TestCase):
     protocol = 'http'
     sites_installed = apps.is_installed('django.contrib.sites')
     domain = 'example.com' if sites_installed else 'testserver'
-    urls = 'django.contrib.sitemaps.tests.urls.http'
+    urls = 'djsitemaps.tests.urls.http'
 
     def setUp(self):
         self.base_url = '%s://%s' % (self.protocol, self.domain)

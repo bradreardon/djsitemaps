@@ -6,7 +6,7 @@ from unittest import skipUnless
 import os
 from django.apps import apps
 from django.conf import settings
-from django.contrib.sitemaps import Sitemap, GenericSitemap
+from djsitemaps import Sitemap, GenericSitemap
 from django.contrib.sites.models import Site
 from django.core.exceptions import ImproperlyConfigured
 from django.test import modify_settings, override_settings
