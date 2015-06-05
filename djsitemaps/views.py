@@ -54,18 +54,17 @@ def sitemap(request, sitemaps, section=None,
     if section is not None:
         if section not in sitemaps:
             raise Http404("No sitemap available for section: %r" % section)
-        maps = [sitemaps[section]]
+        maps = {section: sitemaps[section]}
     else:
-        maps = list(six.itervalues(sitemaps))
+        maps = sitemaps
     page = request.GET.get("p", 1)
 
-    urls = []
-    for site in maps:
+    urls = {}
+    for section, site in maps.iteritems():
         try:
             if callable(site):
                 site = site(request)
-            urls.extend(site.get_urls(page=page, site=req_site,
-                                      protocol=req_protocol))
+            urls.update({section: site.get_urls(page=page, site=req_site, protocol=req_protocol)})
         except EmptyPage:
             raise Http404("Page %s empty" % page)
         except PageNotAnInteger:

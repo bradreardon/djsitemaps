@@ -22,7 +22,7 @@ def ping_google(sitemap_url=None, ping_url=PING_URL):
     if sitemap_url is None:
         try:
             # First, try to get the "index" sitemap URL.
-            sitemap_url = urlresolvers.reverse('djsitemaps.views.index')
+            sitemap_url = urlresolvers.reverse('django.contrib.sitemaps.views.index')
         except urlresolvers.NoReverseMatch:
             try:
                 # Next, try for the "global" sitemap URL.
