@@ -1,6 +1,7 @@
 from django.apps import apps as django_apps
-from django.core import urlresolvers, paginator
+from django.core import paginator
 from django.core.exceptions import ImproperlyConfigured
+from django.urls import reverse, NoReverseMatch
 from django.utils.six.moves.urllib.parse import urlencode
 from django.utils.six.moves.urllib.request import urlopen
 
@@ -22,12 +23,12 @@ def ping_google(sitemap_url=None, ping_url=PING_URL):
     if sitemap_url is None:
         try:
             # First, try to get the "index" sitemap URL.
-            sitemap_url = urlresolvers.reverse('django.contrib.sitemaps.views.index')
-        except urlresolvers.NoReverseMatch:
+            sitemap_url = reverse('django.contrib.sitemaps.views.index')
+        except NoReverseMatch:
             try:
                 # Next, try for the "global" sitemap URL.
-                sitemap_url = urlresolvers.reverse('djsitemaps.views.sitemap')
-            except urlresolvers.NoReverseMatch:
+                sitemap_url = reverse('djsitemaps.views.sitemap')
+            except NoReverseMatch:
                 pass
 
     if sitemap_url is None:
