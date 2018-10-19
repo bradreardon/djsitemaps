@@ -60,7 +60,7 @@ def sitemap(request, sitemaps, section=None,
     page = request.GET.get("p", 1)
 
     urls = {}
-    for section, site in maps.iteritems():
+    for section, site in maps.items():
         try:
             if callable(site):
                 site = site(request)

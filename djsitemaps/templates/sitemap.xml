@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 {% spaceless %}
-{% for section, section_urls in urlset.iteritems %}
+{% for section, section_urls in urlset.items %}
   {% for url in section_urls %}
     <url>
       <loc>{{ url.location }}</loc>
