@@ -7,7 +7,6 @@ from django.urls import reverse
 from django.core.paginator import EmptyPage, PageNotAnInteger
 from django.http import Http404
 from django.template.response import TemplateResponse
-from django.utils import six
 from django.utils.http import http_date
 
 

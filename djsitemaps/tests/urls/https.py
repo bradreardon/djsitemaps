@@ -1,4 +1,4 @@
-from django.conf.urls import patterns
+from django.conf.urls import re_path
 
 from djsitemaps.tests.urls.http import SimpleSitemap
 
@@ -10,8 +10,8 @@ secure_sitemaps = {
     'simple': HTTPSSitemap,
 }
 
-urlpatterns = patterns('djsitemaps.views',
-    (r'^secure/index\.xml$', 'index', {'sitemaps': secure_sitemaps}),
-    (r'^secure/sitemap-(?P<section>.+)\.xml$', 'sitemap',
+urlpatterns = [
+    (r'^secure/index\.xml$', 'djsitemaps.views.index', {'sitemaps': secure_sitemaps}),
+    (r'^secure/sitemap-(?P<section>.+)\.xml$', 'djsitemaps.views.sitemap',
         {'sitemaps': secure_sitemaps}),
-)
+]

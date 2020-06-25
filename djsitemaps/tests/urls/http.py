@@ -1,5 +1,5 @@
 from datetime import date, datetime
-from django.conf.urls import patterns, url
+from django.conf.urls import patterns, re_path
 from djsitemaps import Sitemap, GenericSitemap, FlatPageSitemap, views
 from django.utils import timezone
 from django.views.decorators.cache import cache_page
@@ -75,26 +75,26 @@ flatpage_sitemaps = {
     'flatpages': FlatPageSitemap,
 }
 
-urlpatterns = patterns('djsitemaps.views',
-    (r'^simple/index\.xml$', 'index', {'sitemaps': simple_sitemaps}),
-    (r'^simple/custom-index\.xml$', 'index',
+urlpatterns = [
+    re_path(r'^simple/index\.xml$', 'djsitemaps.views.index', {'sitemaps': simple_sitemaps}),
+    re_path(r'^simple/custom-index\.xml$', 'djsitemaps.views.index',
         {'sitemaps': simple_sitemaps, 'template_name': 'custom_sitemap_index.xml'}),
-    (r'^simple/sitemap-(?P<section>.+)\.xml$', 'sitemap',
+    re_path(r'^simple/sitemap-(?P<section>.+)\.xml$', 'djsitemaps.views.sitemap',
         {'sitemaps': simple_sitemaps}),
-    (r'^simple/sitemap\.xml$', 'sitemap', {'sitemaps': simple_sitemaps}),
-    (r'^simple/custom-sitemap\.xml$', 'sitemap',
+    re_path(r'^simple/sitemap\.xml$', 'djsitemaps.views.sitemap', {'sitemaps': simple_sitemaps}),
+    re_path(r'^simple/custom-sitemap\.xml$', 'djsitemaps.views.sitemap',
         {'sitemaps': simple_sitemaps, 'template_name': 'custom_sitemap.xml'}),
-    (r'^empty/sitemap\.xml$', 'sitemap', {'sitemaps': empty_sitemaps}),
-    (r'^lastmod/sitemap\.xml$', 'sitemap', {'sitemaps': fixed_lastmod_sitemaps}),
-    (r'^lastmod-mixed/sitemap\.xml$', 'sitemap', {'sitemaps': fixed_lastmod__mixed_sitemaps}),
-    url(r'^lastmod/date-sitemap.xml$', views.sitemap,
+    re_path(r'^empty/sitemap\.xml$', 'djsitemaps.views.sitemap', {'sitemaps': empty_sitemaps}),
+    re_path(r'^lastmod/sitemap\.xml$', 'djsitemaps.views.sitemap', {'sitemaps': fixed_lastmod_sitemaps}),
+    re_path(r'^lastmod-mixed/sitemap\.xml$', 'djsitemaps.views.sitemap', {'sitemaps': fixed_lastmod__mixed_sitemaps}),
+    re_path(r'^lastmod/date-sitemap.xml$', views.sitemap,
         {'sitemaps': {'date-sitemap': DateSiteMap}}),
-    url(r'^lastmod/tz-sitemap.xml$', views.sitemap,
+    re_path(r'^lastmod/tz-sitemap.xml$', views.sitemap,
         {'sitemaps': {'tz-sitemap': TimezoneSiteMap}}),
-    (r'^generic/sitemap\.xml$', 'sitemap', {'sitemaps': generic_sitemaps}),
-    (r'^flatpages/sitemap\.xml$', 'sitemap', {'sitemaps': flatpage_sitemaps}),
-    url(r'^cached/index\.xml$', cache_page(1)(views.index),
+    re_path(r'^generic/sitemap\.xml$', 'djsitemaps.views.sitemap', {'sitemaps': generic_sitemaps}),
+    re_path(r'^flatpages/sitemap\.xml$', 'djsitemaps.views.sitemap', {'sitemaps': flatpage_sitemaps}),
+    re_path(r'^cached/index\.xml$', cache_page(1)(views.index),
         {'sitemaps': simple_sitemaps, 'sitemap_url_name': 'cached_sitemap'}),
-    url(r'^cached/sitemap-(?P<section>.+)\.xml', cache_page(1)(views.sitemap),
+    re_path(r'^cached/sitemap-(?P<section>.+)\.xml', cache_page(1)(views.sitemap),
         {'sitemaps': simple_sitemaps}, name='cached_sitemap')
-)
+]
